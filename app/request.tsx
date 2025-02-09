@@ -1,4 +1,3 @@
-// request.tsx
 const chekcIfModelIsOnline = async (modelUsername: string) => {
   try {
     const response = await fetch("/api/fetchModelStatus");
