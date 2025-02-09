@@ -220,13 +220,11 @@ const supabaseKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1oZXp5ZG9ybmxlY25pcnpyY3ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg3Njc1NjgsImV4cCI6MjA1NDM0MzU2OH0.MdypDytkc-8IFTfECb1DZmBufWIrOYA3lnxOQ7WNl6A";
 
 export async function getData(): Promise<VideoModel[] | undefined> {
-  console.log("getdata");
   const supabase = createBrowserClient<Database>(supabaseUrl, supabaseKey);
   const { data, error } = await supabase.from("models").select();
   if (error) {
     console.error("Error deleting record:", error);
   } else {
-    console.log("fetch data", data);
     return data;
   }
 }
