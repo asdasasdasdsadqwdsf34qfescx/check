@@ -36,11 +36,13 @@ export default function Home() {
       try {
         const currentModels = await getData();
         if (!currentModels) return;
+        const response = await fetch("/api/fetchModelStatus");
+        const data = await response.json();
 
         await Promise.all(
           currentModels.map(async (model) => {
             const wasOnline = model.isOnline;
-            const isOnline = await checkIfModelIsOnline(model.name);
+            const isOnline = await checkIfModelIsOnline(model.name,data);
 
             if (wasOnline !== isOnline) {
               logStatusChange(model.name, isOnline);

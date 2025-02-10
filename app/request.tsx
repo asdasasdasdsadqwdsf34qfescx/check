@@ -1,8 +1,7 @@
-const chekcIfModelIsOnline = async (modelUsername: string) => {
+
+
+const chekcIfModelIsOnline = async (modelUsername: string, data: any) => {
   try {
-    const response = await fetch("/api/fetchModelStatus");
-    const data = await response.json();
-  
     const model = data.find(
       (item: any) => item.username.toLowerCase() === modelUsername.toLowerCase()
     );
