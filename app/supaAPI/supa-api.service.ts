@@ -210,6 +210,7 @@ export interface VideoModel {
   instagram: null | string | undefined;
   tiktok: null | string;
   isOnline: boolean;
+  onlineCount: number;
   averageRating: number;
 }
 
@@ -245,21 +246,17 @@ export async function update(updateData: VideoModel) {
   console.log(error);
 }
 
-
-export async function updateDbOnlineStatus(id: number) {
+export async function updateDbOnlineStatus(id: number, onlineCount: number) {
   const supabase = createBrowserClient<Database>(supabaseUrl, supabaseKey);
   await supabase
     .from("models")
-    .update({isOnline: true})
+    .update({ isOnline: true, onlineCount })
     .eq("id", id);
 }
 
 export async function updateDbOnlineStatusToFalse(id: number) {
   const supabase = createBrowserClient<Database>(supabaseUrl, supabaseKey);
-  await supabase
-    .from("models")
-    .update({isOnline: false})
-    .eq("id", id);
+  await supabase.from("models").update({ isOnline: false }).eq("id", id);
 }
 
 export const calculateAverageRating = (video: VideoModel): number => {

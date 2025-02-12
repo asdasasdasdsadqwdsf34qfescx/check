@@ -47,7 +47,7 @@ export default function Home() {
             if (wasOnline !== isOnline) {
               logStatusChange(model.name, isOnline);
               if (isOnline) {
-                await updateDbOnlineStatus(model.id!);
+                await updateDbOnlineStatus(model.id!, model.onlineCount!);
               } else {
                 await updateDbOnlineStatusToFalse(model.id!);
               }
