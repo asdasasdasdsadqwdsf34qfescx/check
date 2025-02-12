@@ -250,7 +250,7 @@ export async function updateDbOnlineStatus(id: number, onlineCount: number) {
   const supabase = createBrowserClient<Database>(supabaseUrl, supabaseKey);
   await supabase
     .from("models")
-    .update({ isOnline: true, onlineCount })
+    .update({ isOnline: true, onlineCount: onlineCount + 1 })
     .eq("id", id);
 }
 
